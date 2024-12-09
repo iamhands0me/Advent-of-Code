@@ -36,15 +36,15 @@ let chunks = blocks.chunked { $0 == $1 }
 var fileChunks = chunks.filter { $0.first != -1 }
 var spaceChunks = chunks.filter { $0.first == -1 }
 
-while let fileChunk = fileChunks.popLast() {
-    guard let index = spaceChunks.firstIndex(where: { $0.count >= fileChunk.count && $0.startIndex < fileChunk.startIndex }) else {
+while let file = fileChunks.popLast() {
+    guard let index = spaceChunks.firstIndex(where: { $0.count >= file.count && $0.startIndex < file.startIndex }) else {
         continue
     }
 
-    for i in 0 ..< fileChunk.count {
-        compactedBlocksByFile.swapAt(fileChunk.startIndex + i, spaceChunks[index].startIndex + i)
+    for i in 0 ..< file.count {
+        compactedBlocksByFile.swapAt(file.startIndex + i, spaceChunks[index].startIndex + i)
     }
-    spaceChunks[index] = spaceChunks[index].dropFirst(fileChunk.count)
+    spaceChunks[index] = spaceChunks[index].dropFirst(file.count)
 }
 
 let checksum = compactedBlocksByFile
