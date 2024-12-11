@@ -1,7 +1,7 @@
 import Foundation
 
 let puzzle = """
-8793800 1629 65 5 960 0 138983 85629
+125 17
 """
 
 let engravedNums = puzzle
