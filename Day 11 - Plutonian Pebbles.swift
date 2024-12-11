@@ -33,9 +33,7 @@ func changedStoneCount(of engravedNum: Int, after blink: Int) -> Int {
         if str.count.isMultiple(of: 2),
            let prefix = Int(str.prefix(str.count / 2)),
            let suffix = Int(str.suffix(str.count / 2)) {
-            let leftCount = changedStoneCount(of: prefix, after: blink - 1)
-            let rightCount = changedStoneCount(of: suffix, after: blink - 1)
-            return leftCount + rightCount
+            return changedStoneCount(of: prefix, after: blink - 1) + changedStoneCount(of: suffix, after: blink - 1)
         }
 
         return changedStoneCount(of: engravedNum * 2024, after: blink - 1)
