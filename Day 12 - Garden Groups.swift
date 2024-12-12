@@ -54,9 +54,7 @@ func getRegion(_ i: Int, _ j: Int, _ sides: inout [[Int: Set<Int>]]) -> Int {
     for dir in [(-1, 0), (1, 0), (0, -1), (0, 1)].enumerated() {
         let (ni, nj) = (i + dir.element.0, j + dir.element.1)
         
-        guard map.indices ~= ni,
-              map[ni].indices ~= nj,
-              map[i][j] == map[ni][nj] else {
+        guard map.indices ~= ni, map[ni].indices ~= nj, map[i][j] == map[ni][nj] else {
             if dir.element.0 == 0 {
                 sides[dir.offset][j, default: []].insert(i)
             } else {
