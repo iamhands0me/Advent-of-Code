@@ -61,12 +61,12 @@ outer: while second < w * h {
     let robotPositions = Set(robots.map(\.position).map { [$0.x, $0.y] })
     
     for (x, y) in robots.map(\.position) {
-        let xmasTreePositions = Set([
+        let xmasTreePoints = Set([
             [x, y],
             [x - 1, y + 1], [x, y + 1], [x + 1, y + 1],
             [x - 2, y + 2], [x - 1, y + 2], [x, y + 2], [x + 1, y + 2], [x + 2, y + 2]
         ])
-        if xmasTreePositions.isSubset(of: robotPositions) {
+        if xmasTreePoints.isSubset(of: robotPositions) {
             break outer
         }
     }
