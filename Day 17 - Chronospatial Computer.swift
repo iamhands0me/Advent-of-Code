@@ -2,6 +2,10 @@ let register: (a: Int, b: Int, c: Int) = (729, 0, 0)
 let program = [0, 1, 5, 4, 3, 0]
 
 // Part 1
+let output = process(register.a, register.b, register.c)
+    .map(String.init)
+    .joined(separator: ",")
+
 func process(_ a: Int, _ b: Int, _ c: Int) -> [Int] {
     var register: (a: Int, b: Int, c: Int) = (a, b, c)
     var pointer = 0
@@ -46,6 +50,8 @@ func process(_ a: Int, _ b: Int, _ c: Int) -> [Int] {
 }
 
 // Part 2
+var minInitialValue: Int?
+
 if let base = (0...).first(where: { process($0, register.b, register.c).count > 1 }) {
     var initialValues = [0]
     
@@ -58,4 +64,6 @@ if let base = (0...).first(where: { process($0, register.b, register.c).count > 
                 }
         }
     }
+    
+    minInitialValue = initialValues.min()
 }
