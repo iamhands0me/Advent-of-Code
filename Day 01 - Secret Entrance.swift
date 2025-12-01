@@ -1,10 +1,3 @@
-//
-//  main.swift
-//  aoc
-//
-//  Created by Cheng, Zack on 2025/12/1.
-//
-
 import Algorithms
 import Foundation
 
