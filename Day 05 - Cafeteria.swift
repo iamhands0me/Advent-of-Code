@@ -14,7 +14,8 @@ let puzzle = """
 32
 """
 
-let rangeSet = RangeSet(
+// Part 1
+let freshCount = RangeSet(
     puzzle
         .components(separatedBy: .newlines)
         .prefix { $0.contains("-") }
@@ -25,17 +26,31 @@ let rangeSet = RangeSet(
         }
         .map { Range($0[0] ... $0[1]) }
 )
-
-// Part 1
-let freshCount = puzzle
-    .components(separatedBy: .newlines)
-    .compactMap(Int.init)
-    .count { availableId in
-        rangeSet.contains(availableId)
-    }
+.intersection(
+    RangeSet(
+        IndexSet(
+            puzzle
+                .components(separatedBy: .newlines)
+                .compactMap(Int.init)
+        )
+    )
+)
+.ranges
+.map(\.count)
+.reduce(0, +)
 
 // Part 2
-let totalFreshCount = rangeSet
-    .ranges
-    .map(\.count)
-    .reduce(0, +)
+let totalFreshCount = RangeSet(
+    puzzle
+        .components(separatedBy: .newlines)
+        .prefix { $0.contains("-") }
+        .map { ranges in
+            ranges
+                .components(separatedBy: "-")
+                .compactMap(Int.init)
+        }
+        .map { Range($0[0] ... $0[1]) }
+)
+.ranges
+.map(\.count)
+.reduce(0, +)
