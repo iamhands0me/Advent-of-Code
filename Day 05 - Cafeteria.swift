@@ -34,7 +34,6 @@ let freshCount = puzzle
         rangeSet.contains(availableId)
     }
 
-
 // Part 2
 let totalFreshCount = rangeSet
     .ranges
